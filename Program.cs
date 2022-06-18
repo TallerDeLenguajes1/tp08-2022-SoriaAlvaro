@@ -3,7 +3,8 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-string path =@"/home/alvaro/Documentos/Taller1/";
+string path =@"/home/alvaro/Documentos/Taller1/tallerGit/tp08-2022-SoriaAlvaro/";
+string root =@"/home/alvaro/Documentos/Taller1/tallerGit/tp08-2022-SoriaAlvaro/root/";
 var archivos = new List<string>();
 
 do{
@@ -20,14 +21,14 @@ do{
                 archivos.Add(Path.GetFileName(archivo));
             }
         }
-        StreamWriter sw = new StreamWriter(path+@"index.csv",true);
-        int i = 0;
-        foreach(var arch in archivos){
-            i++;
-            sw.WriteLine(i+")    "+arch);
+        using(StreamWriter sw = new StreamWriter(root+@"index.csv",true)){
+            int i = 0;
+            foreach(var arch in archivos){
+                i++;
+                sw.WriteLine(i+")    "+arch);
+            }
+            sw.Close();
         }
-        sw.Close();
-        
         
     }catch(Exception error){
         System.Console.WriteLine("No ingresaste una ruta correta"+error.Message);
