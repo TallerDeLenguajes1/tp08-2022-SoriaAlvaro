@@ -8,12 +8,16 @@ var archivos = new List<string>();
 
 do{
     try{
+        System.Console.WriteLine(@"     Carpeta: "+path);
+        foreach(var carpPrincipal in Directory.GetFiles(path)){
+            System.Console.WriteLine(Path.GetFileName(carpPrincipal));
+            archivos.Add(Path.GetFileName(carpPrincipal));
+        }
         foreach(var carpetas in Directory.GetDirectories(path)){
             System.Console.WriteLine(@"     Carpeta: "+carpetas);
             foreach(var archivo in Directory.GetFiles(carpetas)){
-                string nombreExt = Path.GetFileName(archivo);
-                System.Console.WriteLine(nombreExt);
-                archivos.Add(nombreExt);
+                System.Console.WriteLine(Path.GetFileName(archivo));
+                archivos.Add(Path.GetFileName(archivo));
             }
         }
         StreamWriter sw = new StreamWriter(path+@"index.csv",true);
